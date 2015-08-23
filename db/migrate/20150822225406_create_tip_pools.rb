@@ -3,7 +3,8 @@ class CreateTipPools < ActiveRecord::Migration
     create_table :tip_pools do |t|
       t.references :schedule
       t.integer :amount
-      t.datetime :dispersement
+      t.boolean :dispersed
+      t.datetime :dispersement_point
 
       t.timestamps null: false
     end

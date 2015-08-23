@@ -5,32 +5,39 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+bryan = Employee.create()
 
-Employee.create({
-  nickname: "bob",
-  given_name: "robert",
-  family_name: "roberts",
-  email: "bob@bob.com",
-  phone: "415-911-2222",
-  picture: "https://www.google.com/images"
+francisco = Employee.create({
+  nickname: "franny",
+  given_name: "francisco",
+  family_name: "salazar",
+  email: "f@s.com",
+  phone: "",
+  picture: "",
+  admin: false,
+  archived: false
   })
-Employee.create({
-  nickname: "tom",
-  given_name: "thomas",
-  family_name: "thompson",
-  email: "tom@thompson.com",
+tiff = Employee.create({
+  nickname: "tiff",
+  given_name: "lauren",
+  family_name: "jones",
+  email: "l@j.com",
   phone: "415-911-3333",
-  picture: "https://en.wikipedia.org"
+  picture: "",
+  admin: false,
+  archived: false
   })
+
+
 Dispersement.create(
-  employee: 1,
-  pool_employee_position: 1,
+  employee: bob,
+  # pool_employee_position: 1,
   amount: 50,
   status: "paid"
   )
 Dispersement.create(
-  employee: 2,
-  pool_employee_position: 2,
+  employee: tom,
+  # pool_employee_position: 2,
   amount: 100,
   status: "paid"
   )

@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20150822225515) do
   create_table "employee_positions", force: :cascade do |t|
     t.integer  "employee_id"
     t.integer  "position_id"
+    t.boolean  "archived"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -45,6 +46,8 @@ ActiveRecord::Schema.define(version: 20150822225515) do
     t.string   "email"
     t.string   "phone"
     t.string   "picture"
+    t.boolean  "admin"
+    t.boolean  "archived"
     t.string   "token"
     t.string   "expiration"
     t.datetime "created_at",  null: false
@@ -64,6 +67,7 @@ ActiveRecord::Schema.define(version: 20150822225515) do
   create_table "positions", force: :cascade do |t|
     t.string   "title"
     t.string   "permission"
+    t.boolean  "archived"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -91,13 +95,14 @@ ActiveRecord::Schema.define(version: 20150822225515) do
 
   create_table "schedule_types", force: :cascade do |t|
     t.string   "name"
+    t.boolean  "archived"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "schedules", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "date"
+    t.string   "note"
+    t.date     "date"
     t.integer  "schedule_type_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
@@ -108,9 +113,10 @@ ActiveRecord::Schema.define(version: 20150822225515) do
   create_table "tip_pools", force: :cascade do |t|
     t.integer  "schedule_id"
     t.integer  "amount"
-    t.datetime "dispersement"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.boolean  "dispersed"
+    t.datetime "dispersement_point"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   add_foreign_key "dispersements", "employees"

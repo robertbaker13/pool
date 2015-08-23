@@ -1,0 +1,74 @@
+an employee can:
+
+log in w google
+wait for auth.
+
+until authorized -
+see a splash screen that states their status
+
+once authorized -
+see all of their dispersements, with date, weekday, job, hours
+see all tip pools they were a part of
+how much they are currently owed
+
+sign off on receipts
+
+(perhaps some kind of tip reporting tool? keep track of what you reported when?  this would need a big disclaimer saying DON'T rely on this as a legal document - we do not furnish IRS documents and do not guarantee accuracy of tip reporting.  all reporting of tips to the gov't must be done through your employer.)
+
+log out
+
+
+
+an admin can:
+
+log in w google
+see all users, authorized and not
+authorize users
+  => later, connect these to schedulefly users
+deauthorize users
+
+create/edit/delete job types(positions)
+  => add and subtract positions from employees
+
+create/edit/delete schedule types(set included positions and their respective point values)
+  => later, add some logic to these perhaps - triggers?
+  => this logic could include schedule type "families" where the points are adjusted based on numbers of employees or hours in various positions
+  => nested pools? this seems pretty important
+  => overlapping pools? tipouts?
+
+create/edit/delete schedules
+  => later, pull these from schedulefly
+add a tip pool to a schedule (creates a tip_pool that is conncected)
+disperse the tip pool
+
+(rollbacks are not allowed - instead, multiple pools are added to a single schedule - these pools act as adjustments - such adjustments will be added to V2)
+
+generate dispersements - this makes the dispersement viewable to the user
+"pay" dispersements
+  => this sends a text to the user?
+  => this allows the user to confirm the amount received
+  => future version will allow user to confirm from the admin's page (using oauth)
+
+
+notes:
+
+employees can NEVER be deleted, only archived.  once authorized, a deauthorized employee can still log in to look at old data.
+
+dispersements can NEVER be deleted, only archived
+
+once dispersed, pools can never be deleted, nor can the connected schedules
+
+pool_employee_positions should become un-deletable as soon as their pool is dispersed
+schedule_employee_positions should also be un-deletable once their pool is dispersed
+
+'dispersed' should be a method that is available to:
+  => tip_pools
+  => pool_employee_positions
+  => schedule_employee_positions
+  => schedules
+  => schedule_types (once a tip pool using that schedule type has been dispersed)
+  => schedule_type_positions (as above)
+  => positions (ditto)
+  => employee_positions (etc)
+
+
