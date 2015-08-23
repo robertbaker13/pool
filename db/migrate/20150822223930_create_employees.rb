@@ -7,6 +7,8 @@ class CreateEmployees < ActiveRecord::Migration
       t.string :email
       t.string :phone
       t.string :picture
+      t.boolean :admin
+      t.boolean :archived
       t.string :token
       t.string :expiration
 
