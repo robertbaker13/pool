@@ -1,15 +1,33 @@
 Rails.application.routes.draw do
-  root 'welcome#index'
-
-  # config/routes.rb
-  get '/login', to: 'sessions#new', as: 'login'
-  get '/oauth2callback', to: 'sessions#create'
-  get '/logout', to: 'sessions#destroy', as: 'logout'
-
-
   resources :employees do
     resources :dispersements
+    get '/positions', to: 'employee_positions#index', as: "positions"
+    put '/positions', to: 'employee_positions#create'
+    get '/positions/new', to: 'employee_positions#new', as: "new_position"
+    get '/positions/:id/edit', to: 'employee_positions#edit', as: "edit_position"
+    get '/positions/:id', to: 'employee_positions#show', as: "position"
+    patch '/positions/:id', to: 'employee_positions#update'
+    put '/positions/:id', to: 'employee_positions#update'
+    delete '/positions/:id', to: 'employee_positions#destroy'
   end
+
+  resources :schedule_types
+  resources :positions
+  resources :schedule_type_positions
+
+  resources :schedules do
+    resources :tip_pools
+    get '/positions', to: 'schedule_employee_positions#index', as: "employee_positions"
+    put '/positions', to: 'schedule_employee_positions#create'
+    get '/positions/new', to: 'schedule_employee_positions#new', as: "new_employee_position"
+    get '/positions/:id/edit', to: 'schedule_employee_positions#edit', as: "edit_employee_position"
+    get '/positions/:id', to: 'schedule_employee_positions#show', as: "employee_position"
+    patch '/positions/:id', to: 'schedule_employee_positions#update'
+    put '/positions/:id', to: 'schedule_employee_positions#update'
+    delete '/positions/:id', to: 'schedule_employee_positions#destroy'
+  end
+
+  resources :tip_pool_employee_positions
 
 
   # resources :positions
