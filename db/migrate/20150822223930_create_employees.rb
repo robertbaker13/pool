@@ -9,8 +9,9 @@ class CreateEmployees < ActiveRecord::Migration
       t.string :picture
       t.boolean :admin
       t.boolean :archived
-      t.string :token
-      t.string :expiration
+      t.string :refresh_token
+      t.string :access_token
+      t.string :expires
 
       t.timestamps null: false
     end

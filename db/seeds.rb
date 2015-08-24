@@ -5,7 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-bryan = Employee.create()
+bryan = Employee.create(
+  nickname: "way duh",
+  given_name: "bryan",
+  family_name: "ueda",
+  email: "b@u.com",
+  phone: "",
+  picture: "",
+  admin: false,
+  archived: false)
 
 francisco = Employee.create({
   nickname: "franny",
@@ -30,13 +38,31 @@ tiff = Employee.create({
 
 
 Dispersement.create(
-  employee: bob,
+  employee: francisco,
   # pool_employee_position: 1,
   amount: 50,
   status: "paid"
   )
 Dispersement.create(
-  employee: tom,
+  employee: francisco,
+  # pool_employee_position: 1,
+  amount: 55,
+  status: "paid"
+  )
+Dispersement.create(
+  employee: francisco,
+  # pool_employee_position: 1,
+  amount: 60,
+  status: "paid"
+  )
+Dispersement.create(
+  employee: francisco,
+  # pool_employee_position: 1,
+  amount: 50,
+  status: "paid"
+  )
+Dispersement.create(
+  employee: tiff,
   # pool_employee_position: 2,
   amount: 100,
   status: "paid"

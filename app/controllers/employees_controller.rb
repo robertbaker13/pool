@@ -1,6 +1,10 @@
 class EmployeesController < ApplicationController
+  def root
+    p "params: #{params}"
+  end
+
   def index
-    @employees = Employee.all #limit to current organization
+    @employees = Employee.where(archived: false) #limit to current organization
     render json: @employees
   end
 

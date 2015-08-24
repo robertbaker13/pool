@@ -48,10 +48,11 @@ ActiveRecord::Schema.define(version: 20150822225515) do
     t.string   "picture"
     t.boolean  "admin"
     t.boolean  "archived"
-    t.string   "token"
-    t.string   "expiration"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "refresh_token"
+    t.string   "access_token"
+    t.string   "expires"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "pool_employee_positions", force: :cascade do |t|

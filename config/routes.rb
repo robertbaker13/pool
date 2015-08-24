@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  # root 'welcome#index'
+  root 'welcome#index'
+
+  # config/routes.rb
+  get '/login', to: 'sessions#new', as: 'login'
+  get '/oauth2callback', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy', as: 'logout'
+
 
   resources :employees do
     resources :dispersements
