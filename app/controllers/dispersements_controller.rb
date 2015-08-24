@@ -18,7 +18,7 @@ class DispersementsController < ApplicationController
   def create
     @employee = Employee.find(params[:employee_id])
     @dispersement = Dispersement.new(dispersement_params)
-    @dispersement.employee =
+
     if @Dispersement.save
       render 'show'
     else
@@ -34,7 +34,7 @@ class DispersementsController < ApplicationController
   def update
     @dispersement = Dispersement.find(params[:id])
 
-    if @dispersement.update(employee_params)
+    if @dispersement.update(dispersement_params)
       render 'show'
     else
       render 'edit'
