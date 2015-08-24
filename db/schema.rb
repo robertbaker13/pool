@@ -18,15 +18,15 @@ ActiveRecord::Schema.define(version: 20150822225515) do
 
   create_table "dispersements", force: :cascade do |t|
     t.integer  "employee_id"
-    t.integer  "pool_employee_position_id"
+    t.integer  "tip_pool_employee_position_id"
     t.integer  "amount"
     t.string   "status"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   add_index "dispersements", ["employee_id"], name: "index_dispersements_on_employee_id", using: :btree
-  add_index "dispersements", ["pool_employee_position_id"], name: "index_dispersements_on_pool_employee_position_id", using: :btree
+  add_index "dispersements", ["tip_pool_employee_position_id"], name: "index_dispersements_on_tip_pool_employee_position_id", using: :btree
 
   create_table "employee_positions", force: :cascade do |t|
     t.integer  "employee_id"
@@ -54,16 +54,6 @@ ActiveRecord::Schema.define(version: 20150822225515) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
-
-  create_table "pool_employee_positions", force: :cascade do |t|
-    t.integer  "employee_position_id"
-    t.integer  "tip_pool_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
-  add_index "pool_employee_positions", ["employee_position_id"], name: "index_pool_employee_positions_on_employee_position_id", using: :btree
-  add_index "pool_employee_positions", ["tip_pool_id"], name: "index_pool_employee_positions_on_tip_pool_id", using: :btree
 
   create_table "positions", force: :cascade do |t|
     t.string   "title"
@@ -111,6 +101,16 @@ ActiveRecord::Schema.define(version: 20150822225515) do
 
   add_index "schedules", ["schedule_type_id"], name: "index_schedules_on_schedule_type_id", using: :btree
 
+  create_table "tip_pool_employee_positions", force: :cascade do |t|
+    t.integer  "employee_position_id"
+    t.integer  "tip_pool_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "tip_pool_employee_positions", ["employee_position_id"], name: "index_tip_pool_employee_positions_on_employee_position_id", using: :btree
+  add_index "tip_pool_employee_positions", ["tip_pool_id"], name: "index_tip_pool_employee_positions_on_tip_pool_id", using: :btree
+
   create_table "tip_pools", force: :cascade do |t|
     t.integer  "schedule_id"
     t.integer  "amount"
@@ -121,14 +121,14 @@ ActiveRecord::Schema.define(version: 20150822225515) do
   end
 
   add_foreign_key "dispersements", "employees"
-  add_foreign_key "dispersements", "pool_employee_positions"
+  add_foreign_key "dispersements", "tip_pool_employee_positions"
   add_foreign_key "employee_positions", "employees"
   add_foreign_key "employee_positions", "positions"
-  add_foreign_key "pool_employee_positions", "employee_positions"
-  add_foreign_key "pool_employee_positions", "tip_pools"
   add_foreign_key "schedule_employee_positions", "employee_positions"
   add_foreign_key "schedule_employee_positions", "schedules"
   add_foreign_key "schedule_type_positions", "positions"
   add_foreign_key "schedule_type_positions", "schedule_types"
   add_foreign_key "schedules", "schedule_types"
+  add_foreign_key "tip_pool_employee_positions", "employee_positions"
+  add_foreign_key "tip_pool_employee_positions", "tip_pools"
 end
