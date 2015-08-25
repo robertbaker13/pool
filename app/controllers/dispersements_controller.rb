@@ -1,23 +1,25 @@
 class DispersementsController < ApplicationController
   def index
-    @dispersements = Dispersment.all #limit to current organization
+    @employee = Employee.find(params[:employee_id])
+    @dispersements = Dispersement.where(employee: @employee)
     render json: @dispersements
   end
 
   def show
-    @dispersement = Dispersment.find(params[:id])
+    @dispersement = Dispersement.find(params[:id])
     render json: @dispersement
   end
 
   def new
-    @dispersement = Dispersment.new
+    @dispersement = Dispersement.new
     render json: @dispersement
   end
 
   def create
-    @dispersement = Dispersment.new(dispersement_params)
+    @employee = Employee.find(params[:employee_id])
+    @dispersement = Dispersement.new(dispersement_params)
 
-    if @Dispersment.save
+    if @Dispersement.save
       render 'show'
     else
       render 'new'
@@ -25,14 +27,14 @@ class DispersementsController < ApplicationController
   end
 
   def edit
-    @dispersement = Dispersment.find(params[:id])
+    @dispersement = Dispersement.find(params[:id])
     render json: @dispersement
   end
 
   def update
-    @dispersement = Dispersment.find(params[:id])
+    @dispersement = Dispersement.find(params[:id])
 
-    if @dispersment.update(employee_params)
+    if @dispersement.update(dispersement_params)
       render 'show'
     else
       render 'edit'
@@ -40,9 +42,9 @@ class DispersementsController < ApplicationController
   end
 
   def destroy
-    @dispersement = Dispersment.find(params[:id])
+    @dispersement = Dispersement.find(params[:id])
 
-    @dispersment.destroy
+    @dispersement.destroy
     render 'index'
   end
 
